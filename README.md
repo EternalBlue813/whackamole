@@ -1,0 +1,2 @@
+# whackamole
+A christmas game
