@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import '../styles/game.css';
+import './styles/game.css';
 
 interface House {
   id: number;
@@ -9,6 +9,7 @@ interface House {
 }
 
 export default function Home() {
+  const baseUrl = import.meta.env.BASE_URL;
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(() => {
     const saved = localStorage.getItem('whackAMoleHighScore');
@@ -263,7 +264,10 @@ export default function Home() {
 
   return (
     <div className="game-container">
-      <div className="game-background" style={{ backgroundImage: 'url(/images/background.png)' }} />
+      <div
+        className="game-background"
+        style={{ backgroundImage: `url(${baseUrl}images/background.png)` }}
+      />
 
       <div className="game-content">
         {/* Header */}
@@ -312,14 +316,14 @@ export default function Home() {
             >
               <div className="house-container">
                 <img
-                  src="/images/snow-house.png"
+                  src={`${baseUrl}images/snow-house.png`}
                   alt="Snow House"
                   className="house-image"
                 />
                 {house.isVisible && house.character && (
                   <div className="character-wrapper">
                     <img
-                      src={`/images/${house.character}.png`}
+                      src={`${baseUrl}images/${house.character}.png`}
                       alt={house.character}
                       className="character-image"
                     />
@@ -328,7 +332,7 @@ export default function Home() {
                 {house.hitBubble && (
                   <div className="hit-bubble">
                     <img
-                      src="/images/ouch-bubble.png"
+                      src={`${baseUrl}images/ouch-bubble.png`}
                       alt="OUCH!"
                       className="ouch-bubble"
                     />
